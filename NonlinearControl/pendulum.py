@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Apr 13 20:40:06 2020
+Based on code from Mohammad Asif Zaman (https://github.com/zaman13/Double-Pendulum-Motion-Animation/blob/master/Python%20Code/Double_Pendulum_v1.py)
 
-@author: Mohammad Asif Zaman
 Double pendulum motion animation using FuncAnimation()
 """
 
