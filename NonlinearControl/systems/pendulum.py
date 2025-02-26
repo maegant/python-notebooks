@@ -47,7 +47,7 @@ def simulate_pendulum(x0, tfinal, Nt, controller):
     sol1 = sol[:,1]     # omega 1
     return sol0, sol1, t[2]-t[1]
 
-def make_animation(dt, theta_vec, thetadot_vec):
+def make_animation(dt, theta_vec):
     
     def get_mass_pos(theta):
         L, g = get_params()
@@ -98,6 +98,8 @@ def make_animation(dt, theta_vec, thetadot_vec):
 def controller(x):
     return 0  # No control input
 
+# thetavec, thetadotvec, dt = simulate_pendulum(x0, tfinal, Nt, controller)
+# anim = make_animation(dt, thetavec)
+
 # Comment out the following lines if you do not want to save the animation to file
-#anim.save('double_pendulum_animation.mp4', fps=30, extra_args=['-vcodec', 'libx264'])
-# anim.save('double_pendulum_animation.gif', fps=1.0/(dt), writer = 'imagemagick')
+# anim.save('pendulum.gif', fps=1.0/(dt), writer = 'imagemagick')
