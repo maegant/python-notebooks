@@ -36,16 +36,15 @@ def pendulum_system(x, t, controller):
     L, g = get_params()
     dx = np.zeros(2)
     dx[0] = x[1]   # d(theta 1)
-    u = controller(x)
+    u = controller(x, t)
     dx[1] = -(g/L)*np.sin(x[0]) + u
     return dx
 
-def simulate_pendulum(x0, tfinal, Nt, controller):
-    t = np.linspace(0, tfinal, Nt)
-    sol = odeint(pendulum_system, x0, t, args=(controller,))
+def simulate_pendulum(x0, tVec, controller):
+    sol = odeint(pendulum_system, x0, tVec, args=(controller,))
     sol0 = sol[:,0]     # theta_1 
     sol1 = sol[:,1]     # omega 1
-    return sol0, sol1, t[2]-t[1]
+    return sol0, sol1, tVec[2]-tVec[1]
 
 def make_animation(dt, theta_vec):
     
@@ -90,12 +89,12 @@ def make_animation(dt, theta_vec):
     
     # MAIN ANIMATION PLOTTING
     anim = animation.FuncAnimation(fig, animate, init_func=init,
-                               frames=Nt, interval=1000*(dt)*0.8, blit=True)
+                               frames=len(theta_vec)-1, interval=1000*(dt), blit=True)
     plt.close(fig)
     return anim
 
 # Example controller function
-def controller(x):
+def controller(x, t):
     return 0  # No control input
 
 # thetavec, thetadotvec, dt = simulate_pendulum(x0, tfinal, Nt, controller)
